@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:resource name="/Transfer/pricingmatrix/view" path="/Transfer/pricingmatrix/view" id="6a6899d8-443b-4d0e-9958-3650bca46ee3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="6a6899d8-443b-4d0e-9958-3650bca46ee3fileName">%2FTransfer%2Fpricingmatrix%2Fview</con:setting>
+  </con:settings>
+  <con:parameters/>
+  <con:method name="POST" id="000859c4-eaf2-4fe8-99c4-7d78d01f4bce" method="POST">
+    <con:settings/>
+    <con:parameters/>
+    <con:request name="POST Request" id="ba2d8240-4dfe-4fe6-af0f-c46418615aad" mediaType="application/json">
+      <con:settings/>
+      <con:endpoint>https://toolapi.holidayme.in</con:endpoint>
+      <con:credentials>
+        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
+      <con:parameters/>
+      <con:environmentSpec>
+        <con:entry environmentId="ec1271d0-f1a4-4d5a-bd81-fbae999c31c1">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+      </con:environmentSpec>
+    </con:request>
+    <con:environmentSpec>
+      <con:entry environmentId="ec1271d0-f1a4-4d5a-bd81-fbae999c31c1">
+        <con:authProfile>Inherit From Parent</con:authProfile>
+      </con:entry>
+    </con:environmentSpec>
+  </con:method>
+  <con:environmentSpec>
+    <con:entry environmentId="ec1271d0-f1a4-4d5a-bd81-fbae999c31c1">
+      <con:authProfile>Inherit From Parent</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
+</con:resource>

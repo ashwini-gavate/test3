@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:resource name="/Transfer/byid" path="/Transfer/byid" id="bfc214fa-188e-45d4-ab27-5c21f5474a4e" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="bfc214fa-188e-45d4-ab27-5c21f5474a4efileName">%2FTransfer%2Fbyid</con:setting>
+  </con:settings>
+  <con:parameters>
+    <con:parameter required="true">
+      <con:name>id</con:name>
+      <con:value>1517815240811</con:value>
+      <con:style>QUERY</con:style>
+      <con:default>1517815240811</con:default>
+    </con:parameter>
+  </con:parameters>
+  <con:method name="GET" id="410b0944-acba-48e0-a4aa-93b5a067ec1d" method="GET">
+    <con:settings/>
+    <con:parameters/>
+    <con:representation type="FAULT">
+      <con:mediaType>application/json; charset=utf-8</con:mediaType>
+      <con:status>417 400</con:status>
+      <con:params/>
+      <con:element xmlns:byid="https://toolapi.holidayme.in/Transfer/byid">byid:Fault</con:element>
+    </con:representation>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json; charset=utf-8</con:mediaType>
+      <con:status>200</con:status>
+      <con:params/>
+      <con:element xmlns:byid="https://toolapi.holidayme.in/Transfer/byid">byid:Response</con:element>
+    </con:representation>
+    <con:representation type="FAULT">
+      <con:mediaType xsi:nil="true"/>
+      <con:status>404</con:status>
+      <con:params/>
+      <con:element>data</con:element>
+    </con:representation>
+    <con:representation type="RESPONSE">
+      <con:mediaType xsi:nil="true"/>
+      <con:status>204</con:status>
+      <con:params/>
+      <con:element>data</con:element>
+    </con:representation>
+    <con:request name="GET Request" id="3387bf0e-d8c2-41f3-b051-8193a5d00e30" mediaType="application/json">
+      <con:settings/>
+      <con:credentials>
+        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
+      <con:parameters/>
+    </con:request>
+  </con:method>
+</con:resource>

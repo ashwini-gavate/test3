@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:resource name="/Master/api/category/edit" path="/Master/api/category/edit" id="a9a71524-bcbe-47f4-a716-f4f399bff46c" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="a9a71524-bcbe-47f4-a716-f4f399bff46cfileName">%2FMaster%2Fapi%2Fcategory%2Fedit</con:setting>
+  </con:settings>
+  <con:parameters/>
+  <con:method name="POST" id="dda677f0-aab6-44ff-bee4-d51fa6c3109c" method="POST">
+    <con:settings/>
+    <con:parameters/>
+    <con:representation type="RESPONSE">
+      <con:mediaType xsi:nil="true"/>
+      <con:status>0</con:status>
+      <con:params/>
+      <con:element>data</con:element>
+    </con:representation>
+    <con:representation type="REQUEST">
+      <con:mediaType>application/json</con:mediaType>
+      <con:params/>
+    </con:representation>
+    <con:representation type="FAULT">
+      <con:mediaType>application/json; charset=utf-8</con:mediaType>
+      <con:status>417</con:status>
+      <con:params/>
+      <con:element xmlns:edit="https://toolapi.holidayme.in/Master/api/category/edit">edit:Fault</con:element>
+    </con:representation>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json; charset=utf-8</con:mediaType>
+      <con:status>200</con:status>
+      <con:params/>
+      <con:element xmlns:edit="https://toolapi.holidayme.in/Master/api/category/edit">edit:Response</con:element>
+    </con:representation>
+    <con:request name="POST Request" id="c59e7d98-c134-41b4-bf40-e2beb1d9ffcf" mediaType="application/json">
+      <con:settings/>
+      <con:credentials>
+        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
+      <con:parameters/>
+    </con:request>
+  </con:method>
+</con:resource>

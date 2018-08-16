@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="003e1c11-9b0f-40dc-9be1-d42971a11e75" failOnError="true" failTestCaseOnErrors="true" keepSession="true" maxResults="0" name="TestCase 1 for post" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="003e1c11-9b0f-40dc-9be1-d42971a11e75fileName">TestCase-1-for-post</con:setting>
+  </con:settings>
+  <con:savedRecentRuns>1</con:savedRecentRuns>
+  <con:testStep type="datasource" name="DataSource" id="fa2571d8-80db-4307-91d2-a2db65a4778b">
+    <con:settings/>
+    <con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:dataSource type="Excel">
+        <con:configuration>
+          <file>C:/Users/ashwini.gavate/Desktop/Book1.xlsx</file>
+          <worksheet>Sheet1</worksheet>
+          <cell>A1</cell>
+          <ignoreEmpty>false</ignoreEmpty>
+          <evaluateFormulas>true</evaluateFormulas>
+        </con:configuration>
+      </con:dataSource>
+      <con:shared>true</con:shared>
+      <con:restartShared>true</con:restartShared>
+      <con:property>request</con:property>
+      <con:property>x-hme-corelationId</con:property>
+      <con:property>usertrackingid</con:property>
+      <con:property>useragent</con:property>
+      <con:startRow>1</con:startRow>
+      <con:endRow/>
+      <con:recordsPerIteration>1</con:recordsPerIteration>
+      <con:completeLastOperation>true</con:completeLastOperation>
+      <con:trimValues>false</con:trimValues>
+      <con:entitizeValues>false</con:entitizeValues>
+      <con:restartOnRun>true</con:restartOnRun>
+      <con:expandProperties>false</con:expandProperties>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="httprequest" name="HTTP Request" id="02402870-4870-456c-817f-6aa23586a8f5" disabled="true">
+    <con:settings/>
+    <con:config method="POST" xsi:type="con:HttpRequest" id="2552ea68-8077-41eb-a014-2673b92fd2f2" name="HTTP Request" postQueryString="false" mediaType="application/json" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:settings>
+        <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="useragent" value="1"/>
+  &lt;con:entry key="usertrackingid" value="1"/>
+  &lt;con:entry key="x-hme-corelationId" value="1"/>
+&lt;/xml-fragment></con:setting>
+      </con:settings>
+      <con:endpoint>https://toolapi.holidayme.in/Transfer/pricingmatrix/view</con:endpoint>
+      <con:request>{"EndDate":"2018-06-10","TransferId":1519284801721}</con:request>
+      <con:assertion type="Valid HTTP Status Codes" id="b0ddc462-9dc1-447b-986c-4b2554538f2a" name="Valid HTTP Status Codes">
+        <con:settings/>
+        <con:configuration>
+          <codes>200,204,400</codes>
+        </con:configuration>
+      </con:assertion>
+      <con:assertion type="JsonSchemaCompliance" id="7a464590-354e-408f-8c5d-73ffd67f80f7" name="JSON Schema Compliance">
+        <con:configuration>
+          <schemaUrl/>
+        </con:configuration>
+      </con:assertion>
+      <con:assertion type="GroovyScriptAssertion" id="833f799d-4e96-41de-afba-76d3e023f1fc" name="Script Assertion">
+        <con:configuration>
+          <scriptText>import com.Validator.Json;
+import groovy.json.JsonSlurper;
+
+
+String responseJsonSchema = '{ "type": "array", "minItems": 1, "items": { "type": "object", "properties": { "date": { "type": "string" }, "price": { "type": "number" }, "curr": { "type": "string", "enum": [ "AED" ,"AFN" ,"ALL" ,"AMD" ,"ANG" ,"AOA" ,"ARS" ,"AUD" ,"AWG" ,"AZN" ,"BAM" ,"BBD" ,"BDT ,BGN" ,"BHD" ,"BIF" ,"BMD" ,"BND" ,"BOB" ,"BRL" ,"BSD" ,"BTC" ,"BTN" ,"BWP" ,"BYN" ,"BZD" ,"CAD" ,"CDF" ,"CHF" ,"CLF" ,"CLP","CNH","CNY","COP","CRC","CUC","CUP","CVE","CZK","DJF","DKK","DOP","DZD","EGP","ERN","ETB","EUR","FJD","FKP","GBP","GEL","GGP","GHS","GIP","GMD","GNF","GTQ","GYD","HKD","HNL","HRK","HTG","HUF","IDR","ILS","IMP","INR","IQD","IRR","ISK","JEP","JMD","JOD","JPY","KES","KGS","KHR","KMF","KPW","KRW","KWD","KYD","KZT","LAK","LBP","LKR","LRD","LSL","LYD","MAD","MDL","MGA","MKD","MMK","MNT","MOP","MRO","MUR","MVR","MWK","MXN","MYR","MZN","NAD","NGN","NIO","NOK","NPR","NZD","OMR","PAB","PEN","PGK","PHP","PKR","PLN","PYG","QAR","RON","RSD","RUB","RWF","SAR","SBD","SCR","SDG","SEK","SGD","SHP","SLL","SOS","SRD","SSP","STD","SVC","SYP","SZL","THB","TJS","TMT","TND","TOP","TRY","TTD","TWD","TZS","UAH","UGX","USD","UYU","UZS","VEF","VND","VUV","WST","XAF","XAG","XAU","XCD","XDR","XOF","XPD","XPF","XPT","YER","ZAR","ZMW","ZWL" ] }, "vType": { "type": "string", "enum": [ "Vehicle","Person" ] }, "supId": { "type": [ "integer", "null" ] }, "updatedOn": { "type": ["string","null"] }, "updatedBy": { "type": ["string","null"] } }, "required": [ "date", "price", "curr", "vType", "supId", "updatedBy", "updatedOn" ] } }';
+
+def apiTestStep = context.testCase.getTestStepByName('HTTP Request')
+def response = apiTestStep.getPropertyValue('Response')
+def statusCode = apiTestStep.testRequest.messageExchange.responseStatusCode
+
+log.info apiTestStep.testRequest.getRequestHeaders();
+def headers = apiTestStep.testRequest.getRequestHeaders()
+
+assert headers.size()==3 : "Some headers are missing."
+
+assert headers.containsKeyIgnoreCase("useragent"): "useragent heder is missing"
+assert headers.containsKeyIgnoreCase("usertrackingid"): "usertrackingid heder is missing"
+assert headers.containsKeyIgnoreCase("x-hme-corelationId"): "x-hme-corelationId heder is missing"
+
+//assert headers['useragent'] == 1 : "useragent value different than 1"
+if(statusCode == 200)
+{
+    assert Json.validate(response,responseJsonSchema) == "false" : "Response is invalid."
+}
+else if (statusCode == 204)
+{
+	//response.contentLength == 0
+    assert response.contentLength == 0 :"Response body returns No content but contains value in it."
+}
+else if (statusCode == 400)
+{
+  //  pm.test("Response body returns bad request and has correct message",function()
+  def jsonResponse = new JsonSlurper().parseText(response)
+        def keys=jsonResponse.keySet();
+        
+        for(i=0;i&lt;keys.size();i++)
+        {
+			log.info jsonResponse[keys[i]][0];
+			def messages = ["The field TransferId must be between 1 and 9.22337203685478E+18.","The input was not valid.","End date can not be smaller than current date.","Start date can not be greater than end date.","Pricing matrix not available for given Transfer Id.","Invalid currency :","Transfer id required.","Occupancy required.","AdultCount required.","Invalid transfer id.","StartDate is not valid","EndDate is not valid"];
+			log.info messages.contains(jsonResponse[keys[i]][0])
+            //pm.expect(String(pm.response.json()[keys[i]])).to.be.oneOf(["The field TransferId must be between 1 and 9.22337203685478E+18.","The input was not valid.","End date can not be smaller than current date.","Start date can not be greater than end date.","Pricing matrix not available for given Transfer Id.","Invalid currency :","Transfer id required.","Occupancy required.","AdultCount required.","Invalid transfer id.","StartDate is not valid","EndDate is not valid"]); 
+        }
+}
+else 
+{
+    assert false : statusCode + " is not handled in script. Please change the script";
+}</scriptText>
+        </con:configuration>
+      </con:assertion>
+      <con:credentials>
+        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
+      <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+      <con:jmsPropertyConfig/>
+      <con:parameters/>
+      <con:environmentSpec>
+        <con:entry environmentId="ec1271d0-f1a4-4d5a-bd81-fbae999c31c1">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+      </con:environmentSpec>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Request Schema validation" id="3a681167-658e-4fba-a5e6-8e79d11616aa">
+    <con:settings/>
+    <con:config>
+      <script>//to convert json schema to one line use this url -->http://tools.knowledgewalls.com/onlinemultilinetosinglelineconverter
+import com.Validator.Json;
+
+
+//def row = testRunner.testCase.testSteps["DataSource"].getPropertyValue("a");
+//log.info row
+String requestJsonSchema = '{ "type": "object", "properties": { "StartDate": { "type": "string"}, "EndDate": { "type": "string" }, "TransferId": { "type": "integer", "minimum":1 } }, "required": [ "StartDate", "EndDate", "TransferId" ] }';
+
+def request = testRunner.testCase.testSteps["DataSource"].getPropertyValue("request");
+log.info testRunner.testCase.testSteps["DataSource"].getPropertyValue("request")
+log.info "Json Schema Validation result: "+ Json.validate(request,requestJsonSchema).toString() //== "true" : "Request is invalid"
+
+def apiTestStep = context.testCase.getTestStepByName('REST Request')
+apiTestStep.setPropertyValue('Request',request)</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="REST Request" id="08da1529-2008-4a86-8182-44d8322b7deb">
+    <con:settings/>
+    <con:config service="REST Service 2" resourcePath="/Transfer/pricingmatrix/view" methodName="POST" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="REST Request" id="6e16faa3-84a2-4632-beae-3a9260382956" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="useragent" value="${DataSource#useragent}"/>
+  &lt;con:entry key="usertrackingid" value="${DataSource#usertrackingid}"/>
+  &lt;con:entry key="x-hme-corelationId" value="${DataSource#x-hme-corelationId}"/>
+&lt;/xml-fragment></con:setting>
+          <con:setting id="AutoInferSchemas">true</con:setting>
+        </con:settings>
+        <con:endpoint>https://toolapi.holidayme.in</con:endpoint>
+        <con:request>{"StartDate":"2018-06-15","EndDate":"2018-09-30","TransferId":1519284801721}</con:request>
+        <con:originalUri>https://toolapi.holidayme.in/Transfer/pricingmatrix/view</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="0c87498c-e613-4303-bb7b-c5e92ae93f02" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200,204,400,417</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="GroovyScriptAssertion" id="a9cfbd44-ff11-4239-ad69-28ee51550994" name="Message Assertion">
+          <con:configuration>
+            <scriptText>import com.Validator.Json;
+import groovy.json.JsonSlurper;
+
+
+String responseJsonSchema = '{ "type": "array", "minItems": 1, "items": { "type": "object", "properties": { "date": { "type": "string" }, "price": { "type": "number" }, "curr": { "type": "string", "enum": [ "AED" ,"AFN" ,"ALL" ,"AMD" ,"ANG" ,"AOA" ,"ARS" ,"AUD" ,"AWG" ,"AZN" ,"BAM" ,"BBD" ,"BDT ,BGN" ,"BHD" ,"BIF" ,"BMD" ,"BND" ,"BOB" ,"BRL" ,"BSD" ,"BTC" ,"BTN" ,"BWP" ,"BYN" ,"BZD" ,"CAD" ,"CDF" ,"CHF" ,"CLF" ,"CLP","CNH","CNY","COP","CRC","CUC","CUP","CVE","CZK","DJF","DKK","DOP","DZD","EGP","ERN","ETB","EUR","FJD","FKP","GBP","GEL","GGP","GHS","GIP","GMD","GNF","GTQ","GYD","HKD","HNL","HRK","HTG","HUF","IDR","ILS","IMP","INR","IQD","IRR","ISK","JEP","JMD","JOD","JPY","KES","KGS","KHR","KMF","KPW","KRW","KWD","KYD","KZT","LAK","LBP","LKR","LRD","LSL","LYD","MAD","MDL","MGA","MKD","MMK","MNT","MOP","MRO","MUR","MVR","MWK","MXN","MYR","MZN","NAD","NGN","NIO","NOK","NPR","NZD","OMR","PAB","PEN","PGK","PHP","PKR","PLN","PYG","QAR","RON","RSD","RUB","RWF","SAR","SBD","SCR","SDG","SEK","SGD","SHP","SLL","SOS","SRD","SSP","STD","SVC","SYP","SZL","THB","TJS","TMT","TND","TOP","TRY","TTD","TWD","TZS","UAH","UGX","USD","UYU","UZS","VEF","VND","VUV","WST","XAF","XAG","XAU","XCD","XDR","XOF","XPD","XPF","XPT","YER","ZAR","ZMW","ZWL" ] }, "vType": { "type": "string", "enum": [ "Vehicle","Person" ] }, "supId": { "type": [ "integer", "null" ] }, "updatedOn": { "type": ["string","null"] }, "updatedBy": { "type": ["string","null"] } }, "required": [ "date", "price", "curr", "vType", "supId", "updatedBy", "updatedOn" ] } }';
+
+def apiTestStep = context.testCase.getTestStepByName('HTTP Request')
+def response = apiTestStep.getPropertyValue('Response')
+def statusCode = apiTestStep.testRequest.messageExchange.responseStatusCode
+
+log.info apiTestStep.testRequest.getRequestHeaders();
+def headers = apiTestStep.testRequest.getRequestHeaders()
+
+assert headers.size()==3 : "Some headers are missing."
+
+assert headers.containsKeyIgnoreCase("useragent"): "useragent heder is missing"
+assert headers.containsKeyIgnoreCase("usertrackingid"): "usertrackingid heder is missing"
+assert headers.containsKeyIgnoreCase("x-hme-corelationId"): "x-hme-corelationId heder is missing"
+
+//assert headers['useragent'] == 1 : "useragent value different than 1"
+if(statusCode == 200)
+{
+    assert Json.validate(response,responseJsonSchema) == "false" : "Response is invalid."
+}
+else if (statusCode == 204)
+{
+	//response.contentLength == 0
+    assert response.contentLength == 0 :"Response body returns No content but contains value in it."
+}
+else if (statusCode == 400)
+{
+  //  pm.test("Response body returns bad request and has correct message",function()
+  def jsonResponse = new JsonSlurper().parseText(response)
+        def keys=jsonResponse.keySet();
+        
+        for(i=0;i&lt;keys.size();i++)
+        {
+			log.info jsonResponse[keys[i]][0];
+			def messages = ["The field TransferId must be between 1 and 9.22337203685478E+18.","The input was not valid.","End date can not be smaller than current date.","Start date can not be greater than end date.","Pricing matrix not available for given Transfer Id.","Invalid currency :","Transfer id required.","Occupancy required.","AdultCount required.","Invalid transfer id.","StartDate is not valid","EndDate is not valid"];
+			log.info messages.contains(jsonResponse[keys[i]][0])
+            //pm.expect(String(pm.response.json()[keys[i]])).to.be.oneOf(["The field TransferId must be between 1 and 9.22337203685478E+18.","The input was not valid.","End date can not be smaller than current date.","Start date can not be greater than end date.","Pricing matrix not available for given Transfer Id.","Invalid currency :","Transfer id required.","Occupancy required.","AdultCount required.","Invalid transfer id.","StartDate is not valid","EndDate is not valid"]); 
+        }
+}
+else 
+{
+    assert false : statusCode + " is not handled in script. Please change the script";
+}</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>Inherit From Parent</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+        <con:environmentSpec>
+          <con:entry environmentId="ec1271d0-f1a4-4d5a-bd81-fbae999c31c1">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="postRequest" id="ef0b4aba-670a-4e24-bf1a-cb4518c7234a" disabled="true">
+    <con:settings/>
+    <con:config>
+      <script>import com.Validator.Json;
+import groovy.json.JsonSlurper;
+
+
+String responseJsonSchema = '{ "type": "array", "minItems": 1, "items": { "type": "object", "properties": { "date": { "type": "string" }, "price": { "type": "number" }, "curr": { "type": "string", "enum": [ "AED" ,"AFN" ,"ALL" ,"AMD" ,"ANG" ,"AOA" ,"ARS" ,"AUD" ,"AWG" ,"AZN" ,"BAM" ,"BBD" ,"BDT ,BGN" ,"BHD" ,"BIF" ,"BMD" ,"BND" ,"BOB" ,"BRL" ,"BSD" ,"BTC" ,"BTN" ,"BWP" ,"BYN" ,"BZD" ,"CAD" ,"CDF" ,"CHF" ,"CLF" ,"CLP","CNH","CNY","COP","CRC","CUC","CUP","CVE","CZK","DJF","DKK","DOP","DZD","EGP","ERN","ETB","EUR","FJD","FKP","GBP","GEL","GGP","GHS","GIP","GMD","GNF","GTQ","GYD","HKD","HNL","HRK","HTG","HUF","IDR","ILS","IMP","INR","IQD","IRR","ISK","JEP","JMD","JOD","JPY","KES","KGS","KHR","KMF","KPW","KRW","KWD","KYD","KZT","LAK","LBP","LKR","LRD","LSL","LYD","MAD","MDL","MGA","MKD","MMK","MNT","MOP","MRO","MUR","MVR","MWK","MXN","MYR","MZN","NAD","NGN","NIO","NOK","NPR","NZD","OMR","PAB","PEN","PGK","PHP","PKR","PLN","PYG","QAR","RON","RSD","RUB","RWF","SAR","SBD","SCR","SDG","SEK","SGD","SHP","SLL","SOS","SRD","SSP","STD","SVC","SYP","SZL","THB","TJS","TMT","TND","TOP","TRY","TTD","TWD","TZS","UAH","UGX","USD","UYU","UZS","VEF","VND","VUV","WST","XAF","XAG","XAU","XCD","XDR","XOF","XPD","XPF","XPT","YER","ZAR","ZMW","ZWL" ] }, "vType": { "type": "string", "enum": [ "Vehicle","Person" ] }, "supId": { "type": [ "integer", "null" ] }, "updatedOn": { "type": ["string","null"] }, "updatedBy": { "type": ["string","null"] } }, "required": [ "date", "price", "curr", "vType", "supId", "updatedBy", "updatedOn" ] } }';
+
+def apiTestStep = context.testCase.getTestStepByName('REST Request')
+def response = apiTestStep.getPropertyValue('Response')
+log.info apiTestStep.testRequest.messageExchange
+def statusCode = apiTestStep.testRequest.messageExchange.responseStatusCode
+
+log.info statusCode;
+def headers = apiTestStep.testRequest.getRequestHeaders()
+
+assert headers.size()==3 : "Some headers are missing."
+
+assert headers.containsKeyIgnoreCase("useragent"): "useragent heder is missing"
+assert headers.containsKeyIgnoreCase("usertrackingid"): "usertrackingid heder is missing"
+assert headers.containsKeyIgnoreCase("x-hme-corelationId"): "x-hme-corelationId heder is missing"
+
+//assert headers['useragent'] == 1 : "useragent value different than 1"
+if(statusCode == 200)
+{
+    assert Json.validate(response,responseJsonSchema) == "true" : "Response is invalid."
+}
+else if (statusCode == 204)
+{
+	//response.contentLength == 0
+    assert response.contentLength == 0 :"Response body returns No content but contains value in it."
+}
+else if (statusCode == 400)
+{
+  //  pm.test("Response body returns bad request and has correct message",function()
+  def jsonResponse = new JsonSlurper().parseText(response)
+        def keys=jsonResponse.keySet();
+        
+        for(i=0;i&lt;keys.size();i++)
+        {
+			log.info jsonResponse[keys[i]][0];
+			def messages = ["The field TransferId must be between 1 and 9.22337203685478E+18.","The input was not valid.","End date can not be smaller than current date.","Start date can not be greater than end date.","Pricing matrix not available for given Transfer Id.","Invalid currency :","Transfer id required.","Occupancy required.","AdultCount required.","Invalid transfer id.","StartDate is not valid","EndDate is not valid"];
+			log.info messages.contains(jsonResponse[keys[i]][0])
+            //pm.expect(String(pm.response.json()[keys[i]])).to.be.oneOf(["The field TransferId must be between 1 and 9.22337203685478E+18.","The input was not valid.","End date can not be smaller than current date.","Start date can not be greater than end date.","Pricing matrix not available for given Transfer Id.","Invalid currency :","Transfer id required.","Occupancy required.","AdultCount required.","Invalid transfer id.","StartDate is not valid","EndDate is not valid"]); 
+        }
+}
+else if (statusCode == 417)
+{
+  def jsonResponse = new JsonSlurper().parseText(response)
+        def keys=jsonResponse.keySet();
+         log.info keys
+        for(i=0;i&lt;keys.size();i++)
+        {
+			log.info "417message"+jsonResponse[keys[i]];
+			def messages = ["Header x-hme-corelationId is missing.","Header useragent is missing.","Header usertrackingid is missing."];
+			log.info messages.contains(jsonResponse[keys[i]][0])
+        }
+}
+else 
+{
+    assert false : statusCode + " is not handled in script. Please change the script";
+}</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasourceloop" name="DataSource Loop" id="651e7a3a-e188-4416-876d-d8e0253b688a">
+    <con:settings/>
+    <con:config>
+      <dataSourceStep>DataSource</dataSourceStep>
+      <targetStep>PreRequest</targetStep>
+      <discardResults>true</discardResults>
+    </con:config>
+  </con:testStep>
+  <con:properties/>
+  <con:reportParameters/>
+  <con:securityTest id="4e0a3c0a-72e3-4c10-9f41-53ffba884837" testCaseId="003e1c11-9b0f-40dc-9be1-d42971a11e75" name="SecurityTest 1" failSecurityTestOnScanErrors="true">
+    <con:settings>
+      <con:setting id="4e0a3c0a-72e3-4c10-9f41-53ffba884837fileName">SecurityTest-1</con:setting>
+    </con:settings>
+    <con:testStepSecurityTest>
+      <con:testStepId>02402870-4870-456c-817f-6aa23586a8f5</con:testStepId>
+      <con:testStepSecurityProScan type="WeakAuthenticationScan" name="Weak Authentication" id="f59020a6-fb60-4cad-bd98-16fcda561cf7" applyForFailedStep="false" disabled="false">
+        <con:settings/>
+        <con:config xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        <con:assertion type="WeakPassword" id="9d15d7e3-2a6b-4787-9591-269750ae5ae0" name="Weak Password Detection">
+          <con:configuration/>
+        </con:assertion>
+        <con:assertion type="BasicAuth" id="e275ac2f-3dc0-4e26-b16c-96f384b7c826" name="Basic Authentication Detection"/>
+        <con:testStep xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        <con:checkedParameters xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        <con:executionStrategy xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:strategy>ONE_BY_ONE</con:strategy>
+          <con:delay>100</con:delay>
+        </con:executionStrategy>
+      </con:testStepSecurityProScan>
+    </con:testStepSecurityTest>
+    <con:testStepSecurityTest>
+      <con:testStepId>08da1529-2008-4a86-8182-44d8322b7deb</con:testStepId>
+      <con:testStepSecurityScan type="InvalidTypesSecurityScan" name="Invalid Types" id="ed11172d-275d-46c1-a4e4-0c6fd67a5d90" applyForFailedStep="false" disabled="false">
+        <con:settings/>
+        <con:config xsi:type="con:InvalidSecurityScan" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:typesList>
+            <con:type>3</con:type>
+            <con:value>true</con:value>
+          </con:typesList>
+          <con:typesList>
+            <con:type>4</con:type>
+            <con:value>GpM7</con:value>
+          </con:typesList>
+          <con:typesList>
+            <con:type>5</con:type>
+            <con:value>0FB7</con:value>
+          </con:typesList>
+          <con:typesList>
+            <con:type>9</con:type>
+            <con:value>-1E4f</con:value>
+          </con:typesList>
+          <con:typesList>
+            <con:type>10</con:type>
+            <con:value>12.45E+12</con:value>
+          </con:typesList>
+          <con:typesList>
+            <con:type>11</con:type>
+            <con:value>-1.23</con:value>
+          </con:typesList>
+          <con:typesList>
+            <con:type>12</con:type>
+            <con:value>SoapUI is	 the
+ best</con:value>
+          </con:typesList>
+          <con:typesList>
+            <con:type>13</con:type>
+            <con:value>P1Y2M3DT10H30M12.3S</con:value>
+          </con:typesList>
+          <con:typesList>
+            <con:type>14</con:type>
+            <con:value>1999-05-31T13:20:00.000-05:00</con:value>
+          </con:typesList>
+          <con:typesList>
+            <con:type>16</con:type>
+            <con:value>1999-05-31</con:value>
+          </con:typesList>
+          <con:typesList>
+            <con:type>22</con:type>
+            <con:value>-1267896799</con:value>
+          </con:typesList>
+          <con:typesList>
+            <con:type>23</con:type>
+            <con:value>-882223334991111111</con:value>
+          </con:typesList>
+          <con:typesList>
+            <con:type>24</con:type>
+            <con:value>-2147483647</con:value>
+          </con:typesList>
+          <con:typesList>
+            <con:type>25</con:type>
+            <con:value>-32768</con:value>
+          </con:typesList>
+          <con:typesList>
+            <con:type>26</con:type>
+            <con:value>127</con:value>
+          </con:typesList>
+          <con:typesList>
+            <con:type>27</con:type>
+            <con:value>0</con:value>
+          </con:typesList>
+          <con:typesList>
+            <con:type>28</con:type>
+            <con:value>-1</con:value>
+          </con:typesList>
+          <con:typesList>
+            <con:type>29</con:type>
+            <con:value>1</con:value>
+          </con:typesList>
+          <con:typesList>
+            <con:type>30</con:type>
+            <con:value>1267896799</con:value>
+          </con:typesList>
+          <con:typesList>
+            <con:type>31</con:type>
+            <con:value>882223334991111111</con:value>
+          </con:typesList>
+          <con:typesList>
+            <con:type>32</con:type>
+            <con:value>294967295</con:value>
+          </con:typesList>
+          <con:typesList>
+            <con:type>33</con:type>
+            <con:value>65535</con:value>
+          </con:typesList>
+          <con:typesList>
+            <con:type>34</con:type>
+            <con:value>255</con:value>
+          </con:typesList>
+          <con:typesList>
+            <con:type>35</con:type>
+            <con:value>SoapUI is the best</con:value>
+          </con:typesList>
+          <con:typesList>
+            <con:type>36</con:type>
+            <con:value>SoapUI is the best</con:value>
+          </con:typesList>
+        </con:config>
+        <con:assertion type="Sensitive Information Exposure" id="ca39a77d-0371-438e-b783-3fa0d60bf89d" name="Sensitive Information Exposure">
+          <con:configuration/>
+        </con:assertion>
+        <con:testStep xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        <con:checkedParameters xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:parameters label="Request" parameterName="Request" xpath="" checked="true"/>
+        </con:checkedParameters>
+        <con:executionStrategy xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:strategy>ONE_BY_ONE</con:strategy>
+          <con:delay>100</con:delay>
+        </con:executionStrategy>
+      </con:testStepSecurityScan>
+    </con:testStepSecurityTest>
+    <con:properties/>
+    <con:reportParameters/>
+  </con:securityTest>
+  <con:breakPoints>
+    <con:testStepId>fa2571d8-80db-4307-91d2-a2db65a4778b</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+  <con:breakPoints>
+    <con:testStepId>3a681167-658e-4fba-a5e6-8e79d11616aa</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+  <con:breakPoints>
+    <con:testStepId>02402870-4870-456c-817f-6aa23586a8f5</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+  <con:breakPoints>
+    <con:testStepId>ef0b4aba-670a-4e24-bf1a-cb4518c7234a</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+  <con:breakPoints>
+    <con:testStepId>651e7a3a-e188-4416-876d-d8e0253b688a</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+  <con:breakPoints>
+    <con:testStepId>08da1529-2008-4a86-8182-44d8322b7deb</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+  <con:environmentSpec>
+    <con:entry environmentId="ec1271d0-f1a4-4d5a-bd81-fbae999c31c1">
+      <con:authProfile>Inherit From Parent</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
+</con:testCase>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:resource name="/Master/api/category/byid" path="/Master/api/category/byid" id="98a21d2d-39c7-44a9-be86-7d73a2fc9399" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="98a21d2d-39c7-44a9-be86-7d73a2fc9399fileName">%2FMaster%2Fapi%2Fcategory%2Fbyid</con:setting>
+  </con:settings>
+  <con:parameters>
+    <con:parameter required="true">
+      <con:name>id</con:name>
+      <con:value>1534164569425</con:value>
+      <con:style>QUERY</con:style>
+      <con:default>1534164569425</con:default>
+    </con:parameter>
+  </con:parameters>
+  <con:method name="GET" id="f9b5f62a-06f9-4e8c-b171-2f9b4d37d1b9" method="GET">
+    <con:settings/>
+    <con:parameters/>
+    <con:representation type="FAULT">
+      <con:mediaType>application/json; charset=utf-8</con:mediaType>
+      <con:status>417</con:status>
+      <con:params/>
+      <con:element xmlns:byid="https://toolapi.holidayme.in/Master/api/category/byid">byid:Fault</con:element>
+    </con:representation>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json; charset=utf-8</con:mediaType>
+      <con:status>200</con:status>
+      <con:params/>
+      <con:element xmlns:byid="https://toolapi.holidayme.in/Master/api/category/byid">byid:Response</con:element>
+    </con:representation>
+    <con:request name="GET Request" id="754bada2-5e04-40ff-991d-5cf80e1f3c2a" mediaType="application/json">
+      <con:settings/>
+      <con:request/>
+      <con:credentials>
+        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
+      <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+      <con:parameters/>
+    </con:request>
+  </con:method>
+</con:resource>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="ce07278f-cc01-4c10-b8a4-d1db73253c74" discardOkResults="false" failOnError="false" failTestCaseOnErrors="false" keepSession="false" name="TestCase for get" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="ce07278f-cc01-4c10-b8a4-d1db73253c74fileName">TestCase-for-get</con:setting>
+  </con:settings>
+  <con:savedRecentRuns>1</con:savedRecentRuns>
+  <con:testStep type="datasource" name="DataSource" id="e52ae3db-801d-49ea-813b-7be19b42d556">
+    <con:settings/>
+    <con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:dataSource type="Excel">
+        <con:configuration>
+          <file>C:/Users/ashwini.gavate/Desktop/Book1.xlsx</file>
+          <worksheet>Sheet2</worksheet>
+          <cell>A1</cell>
+          <ignoreEmpty>false</ignoreEmpty>
+          <evaluateFormulas>false</evaluateFormulas>
+        </con:configuration>
+      </con:dataSource>
+      <con:shared>true</con:shared>
+      <con:restartShared>true</con:restartShared>
+      <con:property>id</con:property>
+      <con:property>usertrackingid</con:property>
+      <con:property>x-hme-corelationId</con:property>
+      <con:property>useragent</con:property>
+      <con:startRow>1</con:startRow>
+      <con:endRow/>
+      <con:recordsPerIteration>1</con:recordsPerIteration>
+      <con:completeLastOperation>true</con:completeLastOperation>
+      <con:trimValues>false</con:trimValues>
+      <con:entitizeValues>false</con:entitizeValues>
+      <con:restartOnRun>true</con:restartOnRun>
+      <con:expandProperties>false</con:expandProperties>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="REST Request" id="ae095bea-dc5b-493a-970c-5fc7224872f2">
+    <con:settings/>
+    <con:config service="REST Service 3" resourcePath="/Transfer/byid" methodName="GET" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="REST Request" id="3387bf0e-d8c2-41f3-b051-8193a5d00e30" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="useragent" value="${DataSource#useragent}"/>
+  &lt;con:entry key="usertrackingid" value="${DataSource#usertrackingid}"/>
+  &lt;con:entry key="x-hme-corelationId" value="${DataSource#x-hme-corelationId}"/>
+&lt;/xml-fragment></con:setting>
+          <con:setting id="AutoInferSchemas">true</con:setting>
+        </con:settings>
+        <con:request/>
+        <con:originalUri>https://toolapi.holidayme.in/Transfer/byid</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="32626fd8-71f5-4d18-9764-e41f9491a8b5" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200,204,400,404,417</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="GroovyScriptAssertion" id="9792842a-46bb-4c6d-b5d3-5c0f48b06644" name="Script Assertion">
+          <con:configuration/>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <entry key="id" value="${DataSource#id}" xmlns="http://eviware.com/soapui/config"/>
+        </con:parameters>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Groovy Script" id="ad2a4f69-6de4-4ed3-9673-9a0cd22d3b93" disabled="true">
+    <con:settings/>
+    <con:config>
+      <script>import com.Validator.Json;
+import groovy.json.JsonSlurper;
+import com.eviware.soapui.support.types.StringToStringsMap
+
+String responseJsonSchema = '{ "type": "object", "minLength": 1, "items": { "type": "object", "properties": { "id": { "type": "integer", "minimum": 1 }, "typeOfTransport": { "type": "string", "enum": [ "Roadways","Railways","Waterways" ] }, "from": { "type": "string" }, "fromTypeId": { "type": "integer", "enum": [ 4,5,6 ] }, "to": { "type": "string" }, "toTypeId": { "type": "integer", "enum": [ 4,5,6 ] }, "vehicleId": { "type": "integer", "minimum": 1 }, "supplierId": { "type": [ "integer", "null" ] }, "isActive": { "type": "boolean" } }, "required": [ "id", "typeOfTransport", "from", "fromTypeId", "to", "toTypeId", "vehicleId", "supplierId", "isActive" ] } }';
+
+def apiTestStep = context.testCase.getTestStepByName('REST Request')
+def response = apiTestStep.getPropertyValue('Response')
+def statusCode = apiTestStep.testRequest.messageExchange.responseStatusCode
+def request1 = apiTestStep.testRequest.messageExchange.rawResponseData  
+
+StringToStringsMap headers = apiTestStep.testRequest.messageExchange.getRequestHeaders();
+
+assert headers.containsKeyIgnoreCase("useragent"): "useragent heder is missing"
+assert headers.containsKeyIgnoreCase("usertrackingid"): "usertrackingid heder is missing"
+assert headers.containsKeyIgnoreCase("x-hme-corelationId"): "x-hme-corelationId heder is missing"
+
+if(statusCode == 200)
+{
+    assert Json.validate(response,responseJsonSchema) == "true" : "Response is invalid."
+}
+else if (statusCode == 204)
+{
+    assert apiTestStep.testRequest.messageExchange.getResponseHeaders()["Content-Length"][0] == '0' :"Response body returns No content but contains value in it."
+}
+else if (statusCode == 400)
+{
+  def jsonResponse = new JsonSlurper().parseText(response)
+        def keys=jsonResponse.keySet();
+       
+        for(i=0;i&lt;keys.size();i++)
+        {
+        	
+			log.info "message"+jsonResponse[keys[i]];
+			def messages = ["Please provide valid transfer id","Please provide transfer id.","ImageBasePath is missing."];
+			assert messages.contains(jsonResponse[keys[i]])
+        }
+}
+else if (statusCode == 417)
+{
+  def jsonResponse = new JsonSlurper().parseText(response)
+        def keys=jsonResponse.keySet();
+         log.info keys
+        for(i=0;i&lt;keys.size();i++)
+        {
+			log.info "417message"+jsonResponse[keys[i]];
+			def messages = ["Header x-hme-corelationId is missing.","Header useragent is missing.","Header usertrackingid is missing."];
+			log.info messages.contains(jsonResponse[keys[i]][0])
+        }
+}
+else 
+{
+    assert false : statusCode + " is not handled in script. Please change the script";
+}</script>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasourceloop" name="DataSource Loop" id="74ada3fa-491d-4d45-b4f6-df74ebc51e2d">
+    <con:settings/>
+    <con:config>
+      <dataSourceStep>DataSource</dataSourceStep>
+      <targetStep>REST Request</targetStep>
+      <discardResults>true</discardResults>
+    </con:config>
+  </con:testStep>
+  <con:properties/>
+  <con:reportParameters/>
+  <con:breakPoints>
+    <con:testStepId>ae095bea-dc5b-493a-970c-5fc7224872f2</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+  <con:breakPoints>
+    <con:testStepId>74ada3fa-491d-4d45-b4f6-df74ebc51e2d</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+  <con:breakPoints>
+    <con:testStepId>e52ae3db-801d-49ea-813b-7be19b42d556</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+  <con:breakPoints>
+    <con:testStepId>ad2a4f69-6de4-4ed3-9673-9a0cd22d3b93</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+</con:testCase>

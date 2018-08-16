@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:resource name="/Master/api/category/add" path="/Master/api/category/add" id="d35d45d6-ad52-40eb-b920-929e998df2d8" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="d35d45d6-ad52-40eb-b920-929e998df2d8fileName">%2FMaster%2Fapi%2Fcategory%2Fadd</con:setting>
+  </con:settings>
+  <con:parameters/>
+  <con:method name="GET" id="5c736c6b-c429-422b-aaf4-f37386b05c61" method="POST">
+    <con:settings/>
+    <con:parameters/>
+    <con:representation type="REQUEST">
+      <con:mediaType>application/json</con:mediaType>
+      <con:params/>
+    </con:representation>
+    <con:representation type="FAULT">
+      <con:mediaType>application/json; charset=utf-8</con:mediaType>
+      <con:status>417 400</con:status>
+      <con:params/>
+      <con:element xmlns:add="https://toolapi.holidayme.in/Master/api/category/add">add:Fault</con:element>
+    </con:representation>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json; charset=utf-8</con:mediaType>
+      <con:status>200</con:status>
+      <con:params/>
+      <con:element xmlns:add="https://toolapi.holidayme.in/Master/api/category/add">add:Response</con:element>
+    </con:representation>
+    <con:request name="GET Request" id="53661ecb-1bf0-4c48-87bf-ad5a47a91c61" mediaType="application/json" postQueryString="false">
+      <con:settings>
+        <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+      </con:settings>
+      <con:request/>
+      <con:credentials>
+        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
+      <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+      <con:parameters/>
+    </con:request>
+  </con:method>
+</con:resource>

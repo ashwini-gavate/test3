@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:securityTest id="4e0a3c0a-72e3-4c10-9f41-53ffba884837" testCaseId="003e1c11-9b0f-40dc-9be1-d42971a11e75" name="SecurityTest 1" failSecurityTestOnScanErrors="true" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="4e0a3c0a-72e3-4c10-9f41-53ffba884837fileName">SecurityTest-1</con:setting>
+  </con:settings>
+  <con:testStepSecurityTest>
+    <con:testStepId>02402870-4870-456c-817f-6aa23586a8f5</con:testStepId>
+    <con:testStepSecurityProScan type="WeakAuthenticationScan" name="Weak Authentication" id="f59020a6-fb60-4cad-bd98-16fcda561cf7" applyForFailedStep="false" disabled="false">
+      <con:settings/>
+      <con:config xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+      <con:assertion type="WeakPassword" id="9d15d7e3-2a6b-4787-9591-269750ae5ae0" name="Weak Password Detection">
+        <con:configuration/>
+      </con:assertion>
+      <con:assertion type="BasicAuth" id="e275ac2f-3dc0-4e26-b16c-96f384b7c826" name="Basic Authentication Detection"/>
+      <con:testStep xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+      <con:checkedParameters xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+      <con:executionStrategy xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:strategy>ONE_BY_ONE</con:strategy>
+        <con:delay>100</con:delay>
+      </con:executionStrategy>
+    </con:testStepSecurityProScan>
+  </con:testStepSecurityTest>
+  <con:testStepSecurityTest>
+    <con:testStepId>08da1529-2008-4a86-8182-44d8322b7deb</con:testStepId>
+    <con:testStepSecurityScan type="InvalidTypesSecurityScan" name="Invalid Types" id="ed11172d-275d-46c1-a4e4-0c6fd67a5d90" applyForFailedStep="false" disabled="false">
+      <con:settings/>
+      <con:config xsi:type="con:InvalidSecurityScan" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:typesList>
+          <con:type>3</con:type>
+          <con:value>true</con:value>
+        </con:typesList>
+        <con:typesList>
+          <con:type>4</con:type>
+          <con:value>GpM7</con:value>
+        </con:typesList>
+        <con:typesList>
+          <con:type>5</con:type>
+          <con:value>0FB7</con:value>
+        </con:typesList>
+        <con:typesList>
+          <con:type>9</con:type>
+          <con:value>-1E4f</con:value>
+        </con:typesList>
+        <con:typesList>
+          <con:type>10</con:type>
+          <con:value>12.45E+12</con:value>
+        </con:typesList>
+        <con:typesList>
+          <con:type>11</con:type>
+          <con:value>-1.23</con:value>
+        </con:typesList>
+        <con:typesList>
+          <con:type>12</con:type>
+          <con:value>SoapUI is	 the
+ best</con:value>
+        </con:typesList>
+        <con:typesList>
+          <con:type>13</con:type>
+          <con:value>P1Y2M3DT10H30M12.3S</con:value>
+        </con:typesList>
+        <con:typesList>
+          <con:type>14</con:type>
+          <con:value>1999-05-31T13:20:00.000-05:00</con:value>
+        </con:typesList>
+        <con:typesList>
+          <con:type>16</con:type>
+          <con:value>1999-05-31</con:value>
+        </con:typesList>
+        <con:typesList>
+          <con:type>22</con:type>
+          <con:value>-1267896799</con:value>
+        </con:typesList>
+        <con:typesList>
+          <con:type>23</con:type>
+          <con:value>-882223334991111111</con:value>
+        </con:typesList>
+        <con:typesList>
+          <con:type>24</con:type>
+          <con:value>-2147483647</con:value>
+        </con:typesList>
+        <con:typesList>
+          <con:type>25</con:type>
+          <con:value>-32768</con:value>
+        </con:typesList>
+        <con:typesList>
+          <con:type>26</con:type>
+          <con:value>127</con:value>
+        </con:typesList>
+        <con:typesList>
+          <con:type>27</con:type>
+          <con:value>0</con:value>
+        </con:typesList>
+        <con:typesList>
+          <con:type>28</con:type>
+          <con:value>-1</con:value>
+        </con:typesList>
+        <con:typesList>
+          <con:type>29</con:type>
+          <con:value>1</con:value>
+        </con:typesList>
+        <con:typesList>
+          <con:type>30</con:type>
+          <con:value>1267896799</con:value>
+        </con:typesList>
+        <con:typesList>
+          <con:type>31</con:type>
+          <con:value>882223334991111111</con:value>
+        </con:typesList>
+        <con:typesList>
+          <con:type>32</con:type>
+          <con:value>294967295</con:value>
+        </con:typesList>
+        <con:typesList>
+          <con:type>33</con:type>
+          <con:value>65535</con:value>
+        </con:typesList>
+        <con:typesList>
+          <con:type>34</con:type>
+          <con:value>255</con:value>
+        </con:typesList>
+        <con:typesList>
+          <con:type>35</con:type>
+          <con:value>SoapUI is the best</con:value>
+        </con:typesList>
+        <con:typesList>
+          <con:type>36</con:type>
+          <con:value>SoapUI is the best</con:value>
+        </con:typesList>
+      </con:config>
+      <con:assertion type="Sensitive Information Exposure" id="ca39a77d-0371-438e-b783-3fa0d60bf89d" name="Sensitive Information Exposure">
+        <con:configuration/>
+      </con:assertion>
+      <con:testStep xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+      <con:checkedParameters xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:parameters label="Request" parameterName="Request" xpath="" checked="true"/>
+      </con:checkedParameters>
+      <con:executionStrategy xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:strategy>ONE_BY_ONE</con:strategy>
+        <con:delay>100</con:delay>
+      </con:executionStrategy>
+    </con:testStepSecurityScan>
+  </con:testStepSecurityTest>
+  <con:properties/>
+  <con:reportParameters/>
+</con:securityTest>

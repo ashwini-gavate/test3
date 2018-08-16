@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:resource name="/Master/api/category/allcategories" path="/Master/api/category/allcategories" id="0d640571-49be-43d9-8c65-5eb8726912e6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="0d640571-49be-43d9-8c65-5eb8726912e6fileName">%2FMaster%2Fapi%2Fcategory%2Fallcategories</con:setting>
+  </con:settings>
+  <con:parameters/>
+  <con:method name="GET" id="e4c4ecb1-6f4c-4cc7-b786-f71d642bbadf" method="GET">
+    <con:settings/>
+    <con:parameters/>
+    <con:representation type="FAULT">
+      <con:mediaType>application/json; charset=utf-8</con:mediaType>
+      <con:status>417</con:status>
+      <con:params/>
+      <con:element xmlns:all="https://toolapi.holidayme.in/Master/api/category/allcategories">all:Fault</con:element>
+    </con:representation>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json; charset=utf-8</con:mediaType>
+      <con:status>200</con:status>
+      <con:params/>
+      <con:element>Response</con:element>
+    </con:representation>
+    <con:request name="GET Request" id="75d1afb3-b45e-47b1-acd3-4637eb7d412c" mediaType="application/json">
+      <con:settings/>
+      <con:credentials>
+        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
+      <con:parameters/>
+    </con:request>
+  </con:method>
+</con:resource>

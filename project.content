@@ -1,0 +1,15 @@
+REST-Service-1\%2FTransfer%2Fpricingmatrix%2Fview.xml
+REST-Service-2\%2FTransfer%2Fpricingmatrix%2Fview.xml
+REST-Service-3\%2FTransfer%2Fbyid.xml
+REST-Service-4\%2FMaster%2Fapi%2Fcategory%2Fallcategories.xml
+REST-Service-5\%2FMaster%2Fapi%2Fcategory%2Fadd.xml
+REST-Service-6\%2FMaster%2Fapi%2Fcategory%2Fedit.xml
+REST-Service-7\%2FMaster%2Fapi%2Fcategory%2Fbyid.xml
+REST-Service-8\%2FMaster%2Fapi%2Fcategory%2Fallcategories.xml
+REST-Service-9\%2FMaster%2Fapi%2Fcategory%2Fchangestatus.xml
+REST-Service-10\%2FMaster%2Fapi%2Fcategory%2Fbyid.xml
+SecurityTest-1.xml
+TestSuite-1\TestCase-1-for-post.xml
+TestSuite-1\TestCase-for-get.xml
+TestSuite-1\TestCase-1.xml
+Activity_master_integration\TestCase-1.xml

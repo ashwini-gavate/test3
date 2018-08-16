@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="d106bacb-3493-47de-8488-dd6ec0b0960a" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="TestCase 1" searchProperties="true" timeout="0" disabled="true" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="d106bacb-3493-47de-8488-dd6ec0b0960afileName">TestCase-1</con:setting>
+  </con:settings>
+  <con:savedRecentRuns>1</con:savedRecentRuns>
+  <con:testStep type="restrequest" name="REST Request" id="aebb7ed3-f2f6-43a3-bdac-56d58789c567">
+    <con:settings/>
+    <con:config service="REST Service 4" resourcePath="/Master/api/category/allcategories" methodName="GET" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="REST Request" id="f992ed56-f672-4227-8b85-9124c59b7c1a" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="useragent" value="test"/>
+  &lt;con:entry key="usertrackingid" value="test"/>
+  &lt;con:entry key="requestid" value="123"/>
+&lt;/xml-fragment></con:setting>
+          <con:setting id="AutoInferSchemas">true</con:setting>
+        </con:settings>
+        <con:request/>
+        <con:originalUri>https://toolapi.holidayme.co.in/Master/api/category/allcategories</con:originalUri>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:properties/>
+  <con:reportParameters/>
+</con:testCase>

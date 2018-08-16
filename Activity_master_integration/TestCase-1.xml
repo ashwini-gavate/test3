@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="115688a1-5bac-46db-9031-25677d0f7a46" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="TestCase 1" searchProperties="true" timeout="0" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="115688a1-5bac-46db-9031-25677d0f7a46fileName">TestCase-1</con:setting>
+  </con:settings>
+  <con:savedRecentRuns>1</con:savedRecentRuns>
+  <con:testStep type="datasource" name="DataSource" id="f20f93fc-76cd-416f-9ac4-c59889de6762">
+    <con:settings/>
+    <con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:dataSource type="Excel">
+        <con:configuration>
+          <file>C:/Users/ashwini.gavate/Desktop/Book1.xlsx</file>
+          <worksheet>Sheet4</worksheet>
+          <cell>A1</cell>
+          <ignoreEmpty>true</ignoreEmpty>
+          <evaluateFormulas>false</evaluateFormulas>
+        </con:configuration>
+      </con:dataSource>
+      <con:shared>true</con:shared>
+      <con:restartShared>true</con:restartShared>
+      <con:property>request</con:property>
+      <con:property>usertrackingid</con:property>
+      <con:property>useragent</con:property>
+      <con:property>requestid</con:property>
+      <con:startRow>1</con:startRow>
+      <con:endRow/>
+      <con:recordsPerIteration>1</con:recordsPerIteration>
+      <con:completeLastOperation>true</con:completeLastOperation>
+      <con:trimValues>false</con:trimValues>
+      <con:entitizeValues>false</con:entitizeValues>
+      <con:restartOnRun>true</con:restartOnRun>
+      <con:expandProperties>false</con:expandProperties>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="add_catagory" id="185b71c0-1c77-4763-bc1a-114d16714483">
+    <con:settings/>
+    <con:config service="REST Service 5" resourcePath="/Master/api/category/add" methodName="GET" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="add_catagory" id="53661ecb-1bf0-4c48-87bf-ad5a47a91c61" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="useragent" value="${DataSource#useragent}"/>
+  &lt;con:entry key="usertrackingid" value="${DataSource#usertrackingid}"/>
+  &lt;con:entry key="requestid" value="${DataSource#requestid}"/>
+&lt;/xml-fragment></con:setting>
+        </con:settings>
+        <con:request>{"IsActive":${DataSource#request#$['IsActive']},"LastModifiedBy":"${DataSource#request#$['LastModifiedBy']}","title_En":"Category_${=System.currentTimeMillis()}"}</con:request>
+        <con:originalUri>https://toolapi.holidayme.in/Master/api/category/add</con:originalUri>
+        <con:assertion type="GroovyScriptAssertion" id="f71e4497-129f-4af8-b24d-2e9397eb71c4" name="Script Assertion">
+          <con:configuration>
+            <scriptText>import com.Validator.Json;
+String responseJsonSchema = '{ "properties": { "message": { "type": "string" }, "id": { "type": "integer", "pattern": "[0-9]+" } }, "required": [ "message", "id" ] }';
+
+def apiTestStep = context.testCase.getTestStepByName('add_catagory')
+def response = apiTestStep.getPropertyValue('Response')
+def statusCode = apiTestStep.testRequest.messageExchange.responseStatusCode
+
+if(statusCode == 200)
+{
+    assert Json.validate(response,responseJsonSchema) == "false" : "Response is invalid."
+}</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Valid HTTP Status Codes" id="719e6cd9-a318-475c-bdc1-13b7726edaef" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="Edit_Catagory" id="1984b58c-2a5c-4846-84d6-81459aa5096f">
+    <con:settings/>
+    <con:config service="REST Service 6" resourcePath="/Master/api/category/edit" methodName="POST" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="Edit_Catagory" id="c59e7d98-c134-41b4-bf40-e2beb1d9ffcf" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="useragent" value="${DataSource#useragent}"/>
+  &lt;con:entry key="usertrackingid" value="${DataSource#usertrackingid}"/>
+  &lt;con:entry key="requestid" value="${DataSource#requestid}"/>
+&lt;/xml-fragment></con:setting>
+        </con:settings>
+        <con:request>{"Id":${add_catagory#Response#$['id']},"IsActive":${DataSource#request#$['IsActive']},"LastModifiedBy":"${DataSource#request#$['LastModifiedBy']}","title_En":"${add_catagory#RawRequest#$['title_En']}"}</con:request>
+        <con:originalUri>https://toolapi.holidayme.in/Master/api/category/edit</con:originalUri>
+        <con:assertion type="GroovyScriptAssertion" id="daf951da-c118-4471-86d8-1a76e526b47b" name="Script Assertion">
+          <con:configuration/>
+        </con:assertion>
+        <con:assertion type="Valid HTTP Status Codes" id="42a2ef04-d7e6-48ba-b48f-cac3562d82ad" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="getCatagory" id="ddfc5813-4334-44b1-a27b-8cb439503d0d">
+    <con:settings/>
+    <con:config service="REST Service 7" resourcePath="/Master/api/category/byid" methodName="GET" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="getCatagory" id="ba2da4b7-bd9c-48b1-b878-435a52d1d1ea" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="useragent" value="${DataSource#useragent}"/>
+  &lt;con:entry key="usertrackingid" value="${DataSource#usertrackingid}"/>
+  &lt;con:entry key="requestid" value="${DataSource#requestid}"/>
+&lt;/xml-fragment></con:setting>
+        </con:settings>
+        <con:request/>
+        <con:originalUri>https://toolapi.holidayme.in/Master/api/category/byid</con:originalUri>
+        <con:assertion type="GroovyScriptAssertion" id="dfb7e68c-b33d-4b1a-8f1f-1fc56cfa5b79" name="Script Assertion">
+          <con:configuration/>
+        </con:assertion>
+        <con:assertion type="Valid HTTP Status Codes" id="703ac0bb-3f7c-45b6-9684-971a77c0fb51" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <entry key="id" value="${add_catagory#Response#$['id']}" xmlns="http://eviware.com/soapui/config"/>
+        </con:parameters>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="get_all_catagories" id="475a68b7-e01a-4e89-88f6-9fea56dc1d35">
+    <con:settings/>
+    <con:config service="REST Service 8" resourcePath="/Master/api/category/allcategories" methodName="GET" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="get_all_catagories" id="75d1afb3-b45e-47b1-acd3-4637eb7d412c" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="useragent" value="${DataSource#useragent}"/>
+  &lt;con:entry key="usertrackingid" value="${DataSource#usertrackingid}"/>
+  &lt;con:entry key="requestid" value="${DataSource#requestid}"/>
+&lt;/xml-fragment></con:setting>
+        </con:settings>
+        <con:request/>
+        <con:originalUri>https://toolapi.holidayme.in/Master/api/category/allcategories</con:originalUri>
+        <con:assertion type="GroovyScriptAssertion" id="95130bc9-ab30-4d6b-a6b0-ba29cb4b0577" name="Script Assertion">
+          <con:configuration/>
+        </con:assertion>
+        <con:assertion type="Valid HTTP Status Codes" id="ee279b4f-ba57-4a05-9372-d54394eb564d" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Simple Contains" id="a6403fd4-b948-40f1-a346-7e4d590b3f87" name="check for created Catagory exist">
+          <con:configuration>
+            <token>${add_catagory#Response#$['id']}</token>
+            <ignoreCase>false</ignoreCase>
+            <useRegEx>false</useRegEx>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="update_catagory_status" id="fb27cc00-c2bb-4859-909c-be39c390595c">
+    <con:settings/>
+    <con:config service="REST Service 9" resourcePath="/Master/api/category/changestatus" methodName="GET" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="update_catagory_status" id="168c462a-b6a2-4d68-a825-83fd122d1646" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="useragent" value="${DataSource#useragent}"/>
+  &lt;con:entry key="usertrackingid" value="${DataSource#usertrackingid}"/>
+  &lt;con:entry key="requestid" value="${DataSource#requestid}"/>
+&lt;/xml-fragment></con:setting>
+        </con:settings>
+        <con:request/>
+        <con:originalUri>https://toolapi.holidayme.in/Master/api/category/changestatus</con:originalUri>
+        <con:assertion type="GroovyScriptAssertion" id="28e1c53c-9c17-4b9e-82ed-aa86badbd8d8" name="Script Assertion">
+          <con:configuration>
+            <scriptText>import com.Validator.Json;
+String responseJsonSchema = '{ "properties": { "message": { "type": "string" }, "id": { "type": "integer", "pattern": "[0-9]+" } }, "required": [ "message", "id" ] }';
+
+def apiTestStep = context.testCase.getTestStepByName('update_catagory_status')
+def response = apiTestStep.getPropertyValue('Response')
+def statusCode = apiTestStep.testRequest.messageExchange.responseStatusCode
+
+if(statusCode == 200)
+{
+    assert Json.validate(response,responseJsonSchema) == "true" : "Response is invalid."
+}</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Valid HTTP Status Codes" id="1d2c529b-8478-43b7-8403-ed35251709a7" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="id" value="${add_catagory#Response#$['id']}"/>
+          <con:entry key="status" value="${DataSource#request#$['status']}"/>
+        </con:parameters>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="get_catagory_byid" id="9cd0184f-e1ee-4080-be72-5eebe843759c">
+    <con:settings/>
+    <con:config service="REST Service 10" resourcePath="/Master/api/category/byid" methodName="GET" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="get_catagory_byid" id="754bada2-5e04-40ff-991d-5cf80e1f3c2a" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="useragent" value="${DataSource#useragent}"/>
+  &lt;con:entry key="usertrackingid" value="${DataSource#usertrackingid}"/>
+  &lt;con:entry key="requestid" value="${DataSource#requestid}"/>
+&lt;/xml-fragment></con:setting>
+        </con:settings>
+        <con:request/>
+        <con:originalUri>https://toolapi.holidayme.in/Master/api/category/byid</con:originalUri>
+        <con:assertion type="GroovyScriptAssertion" id="4804e250-cc63-4524-8a0b-e5d19e3469a0" name="Script Assertion">
+          <con:configuration/>
+        </con:assertion>
+        <con:assertion type="Valid HTTP Status Codes" id="a3e3c8ac-434e-4421-af9b-d73e87cd617e" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <entry key="id" value="${add_catagory#Response#$['id']}" xmlns="http://eviware.com/soapui/config"/>
+        </con:parameters>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasourceloop" name="DataSource Loop" id="819d20e6-9331-4634-8bc4-deadb83faea8">
+    <con:settings/>
+    <con:config>
+      <dataSourceStep>DataSource</dataSourceStep>
+      <targetStep>add_catagory</targetStep>
+      <discardResults>true</discardResults>
+    </con:config>
+  </con:testStep>
+  <con:properties/>
+  <con:reportParameters/>
+  <con:breakPoints>
+    <con:testStepId>819d20e6-9331-4634-8bc4-deadb83faea8</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+</con:testCase>

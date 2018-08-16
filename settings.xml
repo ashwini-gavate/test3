@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="53fe689d-2679-434a-8433-117b7b7747d2" activeEnvironment="URL" name="Project 5" resourceRoot="" soapui-version="5.4.0" abortOnError="false" runType="SEQUENTIAL" encryptionMode="Not encrypted" updated="2.4.0 2018-06-08T12:50:23Z" compositeProjectFormat="1.3" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="53fe689d-2679-434a-8433-117b7b7747d2fileName">Project-5-soapui-project</con:setting>
+  </con:settings>
+  <con:vcsConfiguration>
+    <con:vcsName>Git</con:vcsName>
+    <con:repositoryIdentifier>https://github.com/ashwini-gavate/test3</con:repositoryIdentifier>
+  </con:vcsConfiguration>
+  <con:savedRecentRuns>1</con:savedRecentRuns>
+  <con:requirements/>
+  <con:properties/>
+  <con:wssContainer/>
+  <con:databaseConnectionContainer/>
+  <con:jmsConnectionContainer/>
+  <con:oAuth2ProfileContainer/>
+  <con:oAuth1ProfileContainer/>
+  <con:sensitiveInformation/>
+  <con:environment id="ec1271d0-f1a4-4d5a-bd81-fbae999c31c1" name="URL">
+    <con:service type="REST" name="REST Service 1">
+      <con:endpoint authProfile="No Authorization"/>
+    </con:service>
+    <con:service type="REST" name="REST Service 2">
+      <con:endpoint authProfile="No Authorization" proxyHost="" proxyPort="" proxyUsername="" proxyPassword="">https://toolapi.holidayme.in</con:endpoint>
+    </con:service>
+    <con:service type="REST" name="REST Service 3">
+      <con:endpoint authProfile="No Authorization">https://toolapi.holidayme.in</con:endpoint>
+    </con:service>
+    <con:service type="REST" name="REST Service 4">
+      <con:endpoint authProfile="No Authorization">https://toolapi.holidayme.co.in</con:endpoint>
+    </con:service>
+    <con:service type="REST" name="REST Service 5">
+      <con:endpoint authProfile="No Authorization">https://toolapi.holidayme.in</con:endpoint>
+    </con:service>
+    <con:service type="REST" name="REST Service 6">
+      <con:endpoint authProfile="No Authorization">https://toolapi.holidayme.in</con:endpoint>
+    </con:service>
+    <con:service type="REST" name="REST Service 7">
+      <con:endpoint authProfile="No Authorization">https://toolapi.holidayme.in</con:endpoint>
+    </con:service>
+    <con:service type="REST" name="REST Service 8">
+      <con:endpoint authProfile="No Authorization">https://toolapi.holidayme.in</con:endpoint>
+    </con:service>
+    <con:service type="REST" name="REST Service 9">
+      <con:endpoint authProfile="No Authorization">https://toolapi.holidayme.in</con:endpoint>
+    </con:service>
+    <con:service type="REST" name="REST Service 10">
+      <con:endpoint authProfile="No Authorization">https://toolapi.holidayme.in</con:endpoint>
+    </con:service>
+    <con:databaseConnectionContainer/>
+    <con:jmsConnectionContainer/>
+  </con:environment>
+  <con:authRepository/>
+  <con:environmentSpec>
+    <con:entry environmentId="ec1271d0-f1a4-4d5a-bd81-fbae999c31c1">
+      <con:authProfile>No Authorization</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
+  <con:tags/>
+</con:soapui-project>
